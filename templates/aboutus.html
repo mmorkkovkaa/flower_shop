@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Our Wines</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{% static 'style/style.css' %}" rel="stylesheet" type="text/css" media="all ">
+	</head>
+	<body>
+
+    <header class="red-header">
+        <div class="container">
+            <h1>Flowers Knows</h1>
+            <nav>
+                <ul>
+                     <li><a  href="/">Flowers Knows</a></li>
+                    <li><a class="normal"href="../tovary/">Produkte</a></li>
+                    <li><a class="normal"  href="../корзина/">Warenkorb</a></li>
+                    <li><a class="normal" href=".aboutus/">Über uns</a></li>
+                    <li><a class="normal" href=  "../все_заказы/">Bestellungen</a></li>
+                     <li><a  class="normal" href= "../review/">Bewertungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <div class="container">
+        <div class="text_holder">
+         <h1> "Flowers Knows" ist der beste Blumenladen der Stadt. </h1>
+        <p>Wir bieten eine große Auswahl an frischen Blumen verschiedener Arten, Sorten und Farben.
+            Unser Team von Floristen sind wahre Meister ihres Fachs und kreieren
+            einzigartige Sträuße und dekorative Kompositionen. Dank unserer Qualität,
+            Auswahl und Service sind wir der unübertroffene Marktführer unter den Blumengeschäften in der Stadt.</p>
+    </div>
+    </div>
+
+
+    <div class="container">
+        <section class="team">
+            <h2 style="background: linear-gradient(0deg, #ff1472 0%, #ff99bd 49%);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: white; padding: 10px 20px; text-align: center;
+         border-radius: 5px;  color: black;">Unser Team</h2>
+
+<!--                {% for i in image %}-->
+<!--                    <div class="image-card">-->
+<!--                         <img src="{{i.image.url}}" alt="">-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+
+                {% for сотрудник in сотрудники %}
+        <div class="employee-card">
+            {% with image=сотрудник.imagedev %}
+                {% if image %}
+                    <div class="image-card">
+                        <img src="{{ image.image.url }}" alt="">
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <h3>{{ сотрудник.имя }} {{ сотрудник.фамилия }}</h3>
+            <ul>
+                <li><strong>Berufserfahrung:</strong> {{ сотрудник.стаж_работы }}</li>
+                <li><strong>Berufsbezeichnung:</strong>{{ сотрудник.должность }}</li>
+                <li><strong>Telefon:</strong>{{ сотрудник.телефон }}</li>
+                <li><strong>E-Mail:</strong> {{ сотрудник.почта }}</li>
+                <li><strong>Lieblingsblume:</strong> {{ сотрудник.любимое_вино }}</li>
+            </ul>
+        </div>
+    {% endfor %}
+
+        </section>
+    </div>
+
+
+    </div>
+</body>
+</html>

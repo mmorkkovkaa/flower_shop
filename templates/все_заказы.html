@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Flowers Knows</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{% static 'style/style.css' %}" rel="stylesheet" type="text/css" media="all ">
+	</head>
+	<body>
+
+    <header class="red-header">
+        <div class="container">
+            <h1>Flowers Knows</h1>
+            <nav>
+                <ul>
+                    <li><a  href="/">Flowers Knows</a></li>
+                    <li><a class="normal" href="../tovary/">Produkte</a></li>
+                    <li><a class="normal"  href="../корзина/">Warenkorb</a></li>
+                    <li><a class="normal" href="../aboutus/">Über uns</a></li>
+                    <li><a class="normal" href=  "все_заказы/">Bestellungen</a></li>
+                     <li><a  class="normal" href= "../review/">Bewertungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" >
+        <div class="order" style="   background-color:#ffc0cb5e; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); margin-left:100px; width: 560px; margin-left: 100px; margin-top: 30px;" >
+            <h1 style=" background-color:#ffc0cbab;" >Alle Bestellungen in unserem Shop: </h1>
+            {% for заказ in все_заказы %}
+
+            <h3 style=" background-color:#f18296;" >Produkte in der Reihenfolge:</h3>
+
+            <ul >
+              {% for товар_в_заказе in заказ.товары_в_заказе.all %}
+                <li>{{ товар_в_заказе.товар.title }} - Menge: {{ товар_в_заказе.количество }}</li>
+              {% endfor %}
+            </ul>
+             <p> Auftragsdatum: {{ заказ.дата_заказа }}</p>
+          {% endfor %}
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

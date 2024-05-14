@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Flowers Knows</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{% static 'style/style.css' %}" rel="stylesheet" type="text/css" media="all ">
+
+	</head>
+	<body>
+
+    <header class="red-header">
+        <div class="container">
+            <h1>Flowers Knows</h1>
+            <nav>
+                <ul>
+                   <li><a  href="/">Flowers Knows</a></li>
+                    <li><a class="normal" href="../tovary/">Produkte</a></li>
+                    <li><a class="normal" href="../корзина/">Warenkorb</a></li>
+                    <li><a class="normal" href="../aboutus/">Über uns</a></li>
+                    <li><a  class="normal" href=  "../все_заказы/">Bestellungen</a></li>
+                     <li><a  class="normal" href= "review/">Bewertungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="rewiew">
+            <h1 style="color: #333;text-align: center; background-color:#ffc0cb5e;">Bewertungen</h1>
+        <h2 style="color: #333; text-align: center;">Hinterlassen Sie Ihre Bewertung zu unserem Shop</h2>
+        <form method="post" style="margin-bottom: 20px; padding: 20px;  background-color:#ffc0cb5e; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background: linear-gradient(0deg, #8b3dff 0%, #ffd6e4 100%); border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: white; padding: 10px 20px; text-align: center; text-decoration:
+        none; display: inline-block; font-size: 20px; cursor: pointer;
+         border-radius: 5px; margin-left: 37px;
+         margin-bottom: 20px; color: black;">Absenden</button>
+        </form>
+        <h2 style="color: #333;text-align: center;">Ihre Bewertung:</h2>
+        <ul style="list-style-type: none; padding: 0;">
+            {% for review in reviews %}
+            <li style="margin-bottom: 10px;  background-color:#ff5795a3; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <h4>{{ review.name }} :</h4>
+                <h5>{{ review.text }}</h5>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Our Wines</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{% static 'style/style.css' %}" rel="stylesheet" type="text/css" media="all ">
+	</head>
+	<body>
+
+   <header class="red-header">
+        <div class="container">
+            <h1>Flowers Knows</h1>
+            <nav>
+                <ul>
+                    <li><a  href="/">Flowers Knows</a></li>
+                    <li><a class="normal" href="../tovary/">Produkte</a></li>
+                    <li><a class="normal" href="корзина/">Warenkorb</a></li>
+                    <li><a class="normal" href="../aboutus/">Über uns</a></li>
+                    <li><a class="normal" href= "../все_заказы/">Bestellungen</a></li>
+                     <li><a  class="normal" href= "../review/">Bewertungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+        <div class="container">
+        <h1>Die Bestellung wurde abgeholt</h1>
+    {% for i in корзина %}
+        <div class="order" style=" background-color:#ffc0cb5e; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
+          <p>Produkt: {{i.товар}} </p>
+          <p>Menge: {{i.quantity}} </p>
+        </div>
+              {% endfor %}
+    </div>
+
+
+    <div class="container">
+        <div class="order" >
+            <h3 style="font-size: 20px;" >Gesamtkosten der Waren: {{ общая_стоимость }}</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="order">
+            <form method="post" action="{% url 'оплатить_заказ' %}">
+                {% csrf_token %}
+                <input style="background: linear-gradient(0deg, #8b3dff 0%, #ffd6e4 100%); border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: white; text-align: center; text-decoration:
+        none; display: inline-block; font-size: 16px; cursor: pointer;
+         border-radius: 5px;  color: black; width: 300px; height: 30px;" type="submit" value="Bezahlen Sie die Bestellung">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
