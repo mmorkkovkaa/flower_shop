@@ -77,3 +77,24 @@ def review_page(request):
         form = ReviewForm()
     reviews = Review.objects.all().order_by('-created_at')
     return render(request, 'review_page.html', {'form': form, 'reviews': reviews})
+
+def edit_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    form = ReviewForm(instance=review)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('review_page')
+    return render(request, 'edit_review.html', {'form': form})
+
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    if request.method == 'POST':
+        review.delete()
+        return redirect('review_page')
+    return render(request, 'delete_review.html', {'review': review})
+
+def product_details(request, product_id):
+    product = get_object_or_404(Товары, pk=product_id)
+    return render(request, 'product_details.html', {'product': product})

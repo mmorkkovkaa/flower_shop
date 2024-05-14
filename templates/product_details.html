@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Flowers Knows</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link href="{% static 'style/style.css' %}" rel="stylesheet" type="text/css" media="all ">
+	</head>
+	<body>
+
+    <header class="red-header">
+        <div class="container">
+            <h1>Flowers Knows</h1>
+            <nav>
+                <ul>
+                   <li><a  href="/">Flowers Knows</a></li>
+                    <li><a class="normal" href="../tovary/">Produkte</a></li>
+                    <li><a class="normal" href="../корзина/">Warenkorb</a></li>
+                    <li><a class="normal" href="../aboutus/">Über uns</a></li>
+                    <li><a  class="normal" href=  "../все_заказы/">Bestellungen</a></li>
+                     <li><a  class="normal" href= "../review/">Bewertungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="text_holder">
+         <h1 style=" margin-left:180px;" > Die schönsten Blumensträuße in unserem Shop </h1>
+    </div>
+    </div>
+    <div class="container">
+        <div class="card_holder" style=" background-color: #ff7aaf75; padding: 20px 20px; margin-bottom:20px;">
+            <h1>{{ product.title }}</h1>
+    <p  style="font-size: 18px;" >{{ product.description }}</p>
+    <img style="
+     height: 300px;
+    width: 300px;"
+         src="{{ product.image.url }}" alt="{{ product.title }}">
+<ul style="list-style-type: none; padding: 0;">
+    <li style="margin-bottom: 10px;">
+        <strong style="color: #333; font-size: 18px;">Lieferant:</strong>
+        <span style="color: #666; font-size: 16px;">{{ product.supplier_company }}</span>
+    </li>
+    <li style="margin-bottom: 10px;">
+        <strong style="color: #333; font-size: 18px;">Lagerbestand:</strong>
+        <span style="color: #666; font-size: 16px;">{{ product.stock_quantity }}</span>
+    </li>
+    <li style="margin-bottom: 10px;">
+        <strong style="color: #333; font-size: 18px;">Preis:</strong>
+        <span style="color: #666; font-size: 16px;">{{ product.price }}</span>
+    </li>
+    <li style="margin-bottom: 10px;">
+        <strong style="color: #333; font-size: 18px;">Blumen:</strong>
+        <span style="color: #666; font-size: 16px;">{{ product.color }}</span>
+    </li>
+    <li style="margin-bottom: 10px;">
+        <strong style="color: #333; font-size: 18px;">Klassifizierung:</strong>
+        <span style="color: #666; font-size: 16px;">{{ product.classification }}</span>
+    </li>
+</ul>
+
+    <form method="post" action="{% url 'добавить_в_корзину' product.id %}">
+        {% csrf_token %}
+        <button type="submit" style="background: linear-gradient(0deg, #8b3dff 0%, #ffd6e4 100%); border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: white; padding: 10px 20px; text-align: center; text-decoration:
+        none; display: inline-block;  cursor: pointer;
+         border-radius: 5px;  color: black;">Zum Warenkorb hinzufügen</button>
+    </form>
+            <div class="rew">
+                <h2 style="  text-align: center; font-size: 18px;" >Bewertungen:</h2>
+    {% for отзыв in product.отзывы.all %}
+        <p style=" font-size: 24px; margin-bottom:-23px;" > {{ отзыв.имя }}: {{ отзыв.текст }} ({{ отзыв.дата_отзыва }})</p>
+    {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

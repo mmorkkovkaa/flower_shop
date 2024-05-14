@@ -43,10 +43,13 @@
         <h2 style="color: #333;text-align: center;">Ihre Bewertung:</h2>
         <ul style="list-style-type: none; padding: 0;">
             {% for review in reviews %}
-            <li style="margin-bottom: 10px;  background-color:#ff5795a3; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                <h4>{{ review.name }} :</h4>
-                <h5>{{ review.text }}</h5>
+           <li style="margin-bottom: 10px; background-color:#ff5795a3; padding: 10px 10px; margin-top:10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <h4>{{ review.name }} :</h4>
+            <h5>{{ review.text }}</h5>
+            <a href="{% url 'edit_review' review.id %}" style="cursor: pointer; background: linear-gradient(0deg, #04ff00 0%, #ffffff 100%); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);color: black; padding: 8px 16px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Bearbeiten</a>
+            <a href="{% url 'delete_review' review.id %}" style="cursor: pointer;background: linear-gradient(0deg, #ff0000 0%, #ffffff 100%); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); color: black; padding: 8px 16px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Löschen</a>
             </li>
+
             {% endfor %}
         </ul>
         </div>
